@@ -5,14 +5,14 @@
 
 
 /**
-* @name		:mianInit
+* @name		:mainInit
 * @author	:Nice
 * @dependent:总初始化
 */
-function mianInit(){
+function mainInit(){
 	
 }
-mianInit();
+mainInit();
 /* @end **/
 
 
