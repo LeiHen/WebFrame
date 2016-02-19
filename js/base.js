@@ -1,9 +1,9 @@
 // JavaScript Document
 
 /**
-* @name		:
-* @author	:si
-* @dependent:全局变量的命名函数
+* @name     :
+* @author   :si
+* @explain  :全局变量的命名函数
 *  GLOBAL.namespace("A.BOOK");GLOBAL.A.BOOK.name="b";
 */
 var GLOBAL={};
@@ -17,9 +17,9 @@ GLOBAL.namespace=function(str){
 /* @end **/
 
 /**
-* @name		:get_previousSibling
-* @author	:si
-* @dependent:去空白字符
+* @name     :get_previousSibling
+* @author   :si
+* @explain  :去空白字符
 */
 function get_previousSibling(n) {
     var y = n.previousSibling;
@@ -31,9 +31,9 @@ function get_previousSibling(n) {
 /* @end **/
 
 /**
-* @name		:toTop
-* @author	:si
-* @dependent:返回顶部
+* @name     :toTop
+* @author   :si
+* @explain  :返回顶部
 */
 function toTop(){   
     //首先将#back-to-top隐藏 
@@ -62,58 +62,31 @@ function toTop(){
 /* @end **/
 
 /**
-* @author	:si
-* @dependent:Google 分析代码;
-*/
-// (function(i, s, o, g, r, a, m) {
-//     i['GoogleAnalyticsObject'] = r;
-//     i[r] = i[r] || function() {
-//         (i[r].q = i[r].q || []).push(arguments)
-//     }, i[r].l = 1 * new Date();
-//     a = s.createElement(o),
-//     m = s.getElementsByTagName(o)[0];
-//     a.async = 1;
-//     a.src = g;
-//     m.parentNode.insertBefore(a, m)
-// })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-// ga('create', 'UA-46800861-1', 'liurisi.net');
-// ga('send', 'pageview');
-/* @end **/
-
-/**
-* @name		:BOMIEVersions
-* @author	:si
-* @dependent:浏览器IE版本判断
-*/
-function BOMIEVersions() {
-    var v = 3,
-        div = document.createElement('div'),
-        all = div.getElementsByTagName('i');
-    while (
-        div.innerHTML = '<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->',
-        all[0]
-    );
-    return v > 4 ? v : false;
-}
-/* @end **/
-
-/**
-* @name		:getDate
-* @author	:si
-* @dependent:获取日期
+* @name     :getDate
+* @author   :si
+* @explain  :获取日期
 */
 function getDate() {
     var Digital = new Date();
 
-    if (document.all) {
-        var year = Digital.getYear();
-    } else {
-        var year = Digital.getYear() + 1900;
-    }
+    // if (document.all) {
+    //     var year = Digital.getYear();
+    // } else {
+    //     var year = Digital.getYear() + 1900;
+    // }
+
+    var year = Digital.getYear() + 1900;
     var month = Digital.getMonth() + 1;
     var date = Digital.getDate();
+
     console.log(year, month, date);
+
+    var Dates =new Array();
+
+    Dates=[year,month,date];
+
+    return Dates
+
     // return year,month,date
 
     // var hours=Digital.getHours();
@@ -133,10 +106,141 @@ function getDate() {
 
 /* @end **/
 
+
+
 /**
-* @name		:btnBindEnter
-* @author	:si
-* @dependent:按钮回车键
+* @name     :curentTime
+* @author   :Nice
+* @explain  :当前时间 1900-01-01 00:00:00
+*/
+function curentTime(){ 
+    var now = new Date();
+
+    var year = now.getFullYear();
+    var month = now.getMonth() + 1;     
+    var day = now.getDate();            
+
+    var hh = now.getHours();            
+    var mm = now.getMinutes();    
+    var ss = now.getSeconds();      
+
+    var clock = year + "-";
+
+    if(month < 10){
+        clock += "0";
+    }
+    clock += month + "-";
+    
+    if(day < 10){
+        clock += "0";
+    }
+    clock += day + " ";
+
+    if(hh < 10){
+        clock += "0";
+    }
+    clock += hh + ":";
+
+    if (mm < 10) {
+        clock += '0'; 
+    }
+    clock += mm + ":";
+
+    if (ss < 10) {
+        clock += '0'; 
+    }
+    clock += ss;
+    
+    return(clock); 
+} 
+
+/* @end **/
+
+
+/**
+* @name     :selectFavorableTicket
+* @author   :Nice
+* @explain  :倒计时
+*/
+
+
+/* @end **/
+
+
+/**
+* @name     :getDateFormattingYYMMDD
+* @author   :Nice
+* @explain  :当前时间 年月日 时分秒
+*/
+
+
+/* @end **/
+
+/**
+* @name     :getDateYYMMDDHHMMCH
+* @author   :Nice
+* @explain  :日期格式化 年月日 时分秒
+*/
+function getDateYYMMDDHHMMCH(str){
+    var mmddhhmm=str.substring(2);
+    var strFormat=mmddhhmm.split("-");
+    var strDD=strFormat[2].split(" ");
+    reStr=strFormat[0]+"年"+strFormat[1]+"月"+strDD[0]+"日 "+strDD[1];
+    console.log(reStr);
+}
+/* @end **/
+
+
+/**
+* @name     :getDateMMDDHHMMCH
+* @author   :Nice
+* @explain  :日期格式化 月日 时分秒
+*/
+function getDateMMDDHHMMCH(str){
+    var mmddhhmm=str.substring(5);
+    var strFormat=mmddhhmm.split("-");
+    var strDD=strFormat[1].split(" ");
+    reStr=strFormat[0]+"月"+strDD[0]+"日 "+strDD[1];
+    // console.log(reStr);
+}
+/* @end **/
+
+/**
+* @name     :getDateMMDDHHCH
+* @author   :Nice
+* @explain  :日期格式化 月日 时分
+*/
+function getDateMMDDHHCH(str){
+    var mmddhhmm=str.substring(5,str.length-3);
+    // console.log(mmddhhmm);
+    var strFormat=mmddhhmm.split("-");
+    var strDD=strFormat[1].split(" ");
+    reStr=strFormat[0]+"月"+strDD[0]+"日 "+strDD[1];
+    // console.log(reStr);
+}
+/* @end **/
+
+
+/**
+* @name     :strDateMMDDHHCHAsp
+* @author   :Nice
+* @explain  :日期格式化 月日 时分 asp
+*/
+function strDateMMDDHHCHAsp(str){
+    var mmddhhmm=str.substring(5,str.length-3);
+    // console.log(mmddhhmm);
+    var strFormat=mmddhhmm.split("-");
+    var strDD=strFormat[1].split(" ");
+    reStr=strFormat[0]+"月"+strDD[0]+"日 "+strDD[1];
+    // console.log(reStr);
+}
+/* @end **/
+
+
+/**
+* @name     :btnBindEnter
+* @author   :si
+* @explain  :按钮回车键
 *  btnID为元素ID,scopeID为作用域ID,作用域可为空 默认window
 */
 function btnBindEnter(btnID,scopeID) {
@@ -164,9 +268,9 @@ function btnBindEnter(btnID,scopeID) {
 /* @end **/
 
 /**
-* @name		:searchDefault
-* @author	:si
-* @dependent:搜索框默认值
+* @name     :searchDefault
+* @author   :si
+* @explain  :搜索框默认值
 */
 function searchDefault(sID){
     var searchID=document.getElementById(sID);
@@ -187,12 +291,10 @@ function searchDefault(sID){
 
 
 
-
-
 /**
 * @name     :attrStyle
 * @author   :Nice
-* @dependent:获取元素样式值
+* @explain  :获取元素样式值
 */
 function attrStyle(elem,attr){
     if(elem.style[attr]){
@@ -210,26 +312,35 @@ function attrStyle(elem,attr){
     }else{
         return null;  
     }
-
 }
 /* @end **/
 
 
-
-
+/**
+* @name     :strToJson
+* @author   :Nice
+* @explain  :字符串转json
+*/
+function strToJson(str){ 
+    var json = eval('(' + str + ')'); 
+    return json
+} 
+/* @end **/
 
 
 
 /**
-* @name		:consoleDebug
-* @author	:si
-* @dependent:调试函数
-*/
-function consoleDebug(x) {
-    console.log(x);
-}
-/* @end **/
+ * @name     :log
+ * @author   :Nice
+ * @explain  :日志
+ */
+function log(){
+    console.log.apply(console, arguments);
+    // var args = Array.prototype.slice.call(arguments);
+    // args.unshift('(app)');
 
+    // console.log.apply(console, args);
+}
 
 /**
 * @name     :
