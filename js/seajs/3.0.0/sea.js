@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Add the capability to load CMD modules in node environment
  * @author lifesinger@gmail.com
  */

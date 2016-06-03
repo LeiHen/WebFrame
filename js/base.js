@@ -1,4 +1,4 @@
-// JavaScript Document
+﻿// JavaScript Document
 
 /**
 * @name     :
@@ -51,21 +51,21 @@ function getPreviousSibling(n) {
 * @author   :si
 * @explain  :返回顶部
 */
-function toTop(){   
-    //首先将#back-to-top隐藏 
+function toTop(){
+    //首先将#back-to-top隐藏
     $("#back-to-top").hide();
-    
+
     //当滚动条的位置处于距顶部100像素以下时，跳转链接出现，否则消失
     $(window).scroll(function () {
         if ($(window).scrollTop() > 100) {
             $("#back-to-top").fadeIn(600);
-            $("#goReturn").stop().animate({bottom:80},800);     
-        } else {         
+            $("#goReturn").stop().animate({bottom:80},800);
+        } else {
             $("#back-to-top").fadeOut(600);
             $("#goReturn").stop().animate({bottom:25},800);
         }
     });
-   
+
     //当点击跳转链接后，回到页面顶部位置
     $("#back-to-top").click(function () {
         $("body,html").animate({
@@ -73,7 +73,7 @@ function toTop(){
         }, 400);
         return false;
     });
-    
+
 };
 /* @end **/
 
@@ -110,7 +110,7 @@ function getDate() {
     // var seconds=Digital.getSeconds();
 
     // if (minutes<=9){minutes="0"+minutes;}
-    // if (seconds<=9){seconds="0"+seconds;}  
+    // if (seconds<=9){seconds="0"+seconds;}
     // if (hours<=9){hours="0"+hours;}
 
     // var time=year+"年"+month+"月"+date+"日";
@@ -129,16 +129,16 @@ function getDate() {
 * @author   :Nice
 * @explain  :当前时间 1900-01-01 00:00:00
 */
-function curentTime(){ 
+function curentTime(){
     var now = new Date();
 
     var year = now.getFullYear();
-    var month = now.getMonth() + 1;     
-    var day = now.getDate();            
+    var month = now.getMonth() + 1;
+    var day = now.getDate();
 
-    var hh = now.getHours();            
-    var mm = now.getMinutes();    
-    var ss = now.getSeconds();      
+    var hh = now.getHours();
+    var mm = now.getMinutes();
+    var ss = now.getSeconds();
 
     var clock = year + "-";
 
@@ -146,7 +146,7 @@ function curentTime(){
         clock += "0";
     }
     clock += month + "-";
-    
+
     if(day < 10){
         clock += "0";
     }
@@ -158,17 +158,17 @@ function curentTime(){
     clock += hh + ":";
 
     if (mm < 10) {
-        clock += '0'; 
+        clock += '0';
     }
     clock += mm + ":";
 
     if (ss < 10) {
-        clock += '0'; 
+        clock += '0';
     }
     clock += ss;
-    
-    return(clock); 
-} 
+
+    return(clock);
+}
 
 /* @end **/
 
@@ -264,7 +264,7 @@ function btnBindEnter(btnID,scopeID) {
     var scope = document.getElementById(scopeID);
     var temporary;
 
-    function bindEnter(event){      
+    function bindEnter(event){
         if(event.keyCode == 13){
             console.log("ENTER");
             button.click();
@@ -294,14 +294,14 @@ function searchDefault(sID){
     searchID.onfocus=function(){
         if (searchID.value=="SEARCH") {
             searchID.value="";
-        }      
+        }
     };
     //失去焦点
     searchID.onblur=function(){
         if (searchID.value=="") {
             searchID.value="SEARCH";
         }
-    }; 
+    };
 }
 /* @end **/
 
@@ -326,7 +326,7 @@ function attrStyle(elem,attr){
         //获取样式对象并获取属性值
         return document.defaultView.getComputedStyle(elem,null).getPropertyValue(attr);
     }else{
-        return null;  
+        return null;
     }
 }
 /* @end **/
@@ -337,12 +337,116 @@ function attrStyle(elem,attr){
 * @author   :Nice
 * @explain  :字符串转json
 */
-function strToJson(str){ 
-    var json = eval('(' + str + ')'); 
+function strToJson(str){
+    var json = eval('(' + str + ')');
     return json
-} 
+}
 /* @end **/
 
+
+/**
+* @name     :
+* @author   :Nice
+* @explain  :cookie 操作
+*/
+/* 设置cookie */
+function setCookie(name, value, time) {
+    var strsec = getsec(time);
+    var exp = new Date();
+    exp.setTime(exp.getTime() + strsec * 1);
+    document.cookie = name + "=" + decodeURI(value) + ";expires=" + exp.toGMTString();
+}
+
+function getsec(str) {
+    // alert(str);
+    var str1 = str.substring(1, str.length) * 1;
+    var str2 = str.substring(0, 1);
+    if (str2 == "s")　 {
+        return str1 * 1000;
+    } else if (str2 == "h")　 {
+        return str1 * 60 * 60 * 1000;
+    } else if (str2 == "d")　 {
+        return str1 * 24 * 60 * 60 * 1000;
+    }
+}
+
+//读取cookies
+function getCookie(name) {
+    var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+    if (arr = document.cookie.match(reg))
+        return (arr[2]);
+    else{
+        return null;
+    }
+}
+
+//删除cookies
+function delCookie(name) {
+    var exp = new Date();
+    exp.setTime(exp.getTime() - 1);
+    var cval = getCookie(name);
+    if (cval != null){
+        document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
+    }
+}
+
+//判断cookies是否存在
+function chkCookies(name){
+  var nameCookie = document.cookie.indexOf(name+"=");
+  if (nameCookie != -1){
+    return true;
+  }
+    return false;
+}
+
+function setCookiePath(name,value,time,path) {
+    var strsec = getsec(time);
+    var exp = new Date();
+    exp.setTime(exp.getTime() + strsec * 1);
+    document.cookie = name + "=" + decodeURI(value) + ";expires=" + exp.toGMTString()+";path=/"+path;
+}
+/* @end **/
+
+
+/**
+* @name     :getQueryString
+* @author   :Nice
+* @explain  :获取url传递参数
+*/
+function getQueryString(name){
+     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+     var r = window.location.search.substr(1).match(reg);
+     if(r!=null)return decodeURI(r[2]); return null;
+}
+// 调用方法
+//alert(GetQueryString("参数名1"));
+
+/* @end **/
+
+
+/**
+* @name     :wxConfig
+* @author   :Nice
+* @explain  :微信配置
+*/
+function wxConfig(data){
+    wx.config({
+      debug: false,
+      appId:data.appId,
+      timestamp:data.timestamp,
+      nonceStr:data.nonceStr,
+      signature:data.signature,
+      jsApiList: [
+          'checkJsApi',
+          'onMenuShareTimeline',
+          'onMenuShareAppMessage',
+          'onMenuShareQQ',
+          'onMenuShareWeibo',
+          'onMenuShareQZone'
+      ]
+    });
+}
+/* @end **/
 
 
 /**
